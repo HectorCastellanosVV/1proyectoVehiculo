@@ -38,6 +38,7 @@ public class TModeloInfracciones extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int r, int c) {
+        
         switch (c) {
             case 0:
                 return datos.get(r).getIdfolioinf();
@@ -48,6 +49,7 @@ public class TModeloInfracciones extends AbstractTableModel {
             case 3:
                 return datos.get(r).getFecha();
             case 4:
+                System.out.println("valor: "+datos.get(r).getFechapago());
                 return datos.get(r).getFechapago();
             default:
                 return null;

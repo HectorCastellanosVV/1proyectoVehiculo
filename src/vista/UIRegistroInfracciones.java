@@ -7,8 +7,11 @@ package vista;
 import control.InfraccionJpaController;
 import control.InfraccionesJpaController;
 import control.VehiculoJpaController;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -36,6 +39,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private List<Infracciones> List_Infracciones;
     private List<Infraccion> List_Infraccion;
     private TModeloInfracciones modelot;
+    private ArrayList idInfracciones=new ArrayList();
 
     /**
      * Creates new form UIRegistroInfracciones
@@ -66,14 +70,32 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     }
 
     private void cargarInfraccion() {
+        
         List_Infraccion = cInfraccion.findInfraccionEntities();
         combo_infrac.removeAllItems();
         for (Infraccion inf : List_Infraccion) {
-            combo_infrac.addItem(inf.getIdinfraccion());
+            combo_infrac.addItem(inf.getDescripcion());//Esto se muestra en el combobox
+            idInfracciones.add(inf.getIdinfraccion());//idInfraccion se agregar a un arrayList para gardarlo
         }
 
     }
-
+    private void agregarInfraccion()
+    {
+        Infracciones = new Infracciones();
+        Vehiculo vehiculoadd=List_Vehiculos.get(Combo_Placa.getSelectedIndex());
+        int posicion=combo_infrac.getSelectedIndex(); //posición del combobox seleccionado
+        Infraccion infraccionadd=List_Infraccion.get((int) idInfracciones.get(posicion)); //Agregar el id a infraccion 
+        Date fecha=ParseFecha(txt_fecha.getText());
+        //Date fechaPago=ParseFecha(txt_fecha.getText());
+        
+        Infracciones.setVehiculo(vehiculoadd);
+        Infracciones.setInfraccion(infraccionadd);
+        Infracciones.setFecha(fecha);
+        //Infracciones.setFechapago(ParseFecha("000/00/00"));
+        cInfracciones.create(Infracciones);
+        modelot.fireTableDataChanged();
+        List_Infracciones.add(Infracciones);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -239,16 +261,14 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
 
         combo_infrac.setBackground(new java.awt.Color(34, 34, 34));
         combo_infrac.setForeground(new java.awt.Color(248, 248, 248));
-        combo_infrac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", " " }));
-        combo_infrac.setSelectedIndex(-1);
-        combo_infrac.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        combo_infrac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { ".", "Exceso de velocidad", "Conducción bajo los efectos del alcohol o drogas", "No respetar las señales de tráfico", "No llevar el cinturón de seguridad o el casco", "Estacionamiento ilegal", "Conducir sin licencia", "No tener seguro", "Vehículo en malas condiciones", "Conducir de manera imprudente" }));
+        combo_infrac.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         combo_infrac.setLabeText("Infracción");
         jPanel1.add(combo_infrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 50));
 
         Combo_Placa.setBackground(new java.awt.Color(34, 34, 34));
         Combo_Placa.setForeground(new java.awt.Color(248, 248, 248));
-        Combo_Placa.setSelectedIndex(-1);
-        Combo_Placa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Combo_Placa.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         Combo_Placa.setLabeText("Placa");
         jPanel1.add(Combo_Placa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 350, 50));
 
@@ -256,6 +276,11 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         txt_fecha.setForeground(new java.awt.Color(8, 8, 8));
         txt_fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_fecha.setBorder(null);
+        txt_fecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_fechaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txt_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 230, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/antes.png"))); // NOI18N
@@ -292,15 +317,15 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void button_pagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_pagarMouseClicked
-        Infracciones = new Infracciones();
-        Infracciones.setVehiculo(List_Vehiculos.get(Combo_Placa.getSelectedIndex()));
-        Infracciones.setInfraccion(List_Infraccion.get(combo_infrac.getSelectedIndex()));
-        Infracciones.setFecha(ParseFecha(txt_fecha.getText()));
-        Infracciones.setFechapago(ParseFecha("000/00/00"));
-        cInfracciones.create(Infracciones);
-        modelot.fireTableDataChanged();
-        List_Infracciones.add(Infracciones);
+        agregarInfraccion();
     }//GEN-LAST:event_button_pagarMouseClicked
+
+    private void txt_fechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fechaKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            agregarInfraccion();
+        }
+    }//GEN-LAST:event_txt_fechaKeyPressed
 
     public static Date ParseFecha(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
