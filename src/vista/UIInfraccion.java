@@ -4,15 +4,18 @@
  */
 package vista;
 
+import static java.lang.Boolean.TRUE;
+
 /**
  *
  * @author Hector
  */
 public class UIInfraccion extends javax.swing.JFrame {
-
-    /**
-     * Creates new form UIInfraccion
-     */
+    
+    private UIPagoInfraccion UIPagoInfrac;
+    private UIRegistroInfracciones UIRegistroInfrac;
+    
+    
     public UIInfraccion() {
         initComponents();
     }
@@ -85,6 +88,11 @@ public class UIInfraccion extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(248, 248, 248));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Pagar");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound3Layout = new javax.swing.GroupLayout(panelRound3);
         panelRound3.setLayout(panelRound3Layout);
@@ -118,8 +126,14 @@ public class UIInfraccion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+       UIPagoInfrac=new UIPagoInfraccion();
+       UIPagoInfrac.setVisible(TRUE);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
+        UIRegistroInfrac=new UIRegistroInfracciones();
+         UIRegistroInfrac.setVisible(TRUE);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**

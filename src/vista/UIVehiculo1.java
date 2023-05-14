@@ -78,10 +78,8 @@ public class UIVehiculo1 extends javax.swing.JDialog {
         TablaVehiculos = new javax.swing.JTable();
         panelRound1 = new Herramientas.PanelRound();
         boton = new javax.swing.JLabel();
-
+	 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(34, 34, 34));

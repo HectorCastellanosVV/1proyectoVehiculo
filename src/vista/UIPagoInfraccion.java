@@ -39,9 +39,6 @@ public class UIPagoInfraccion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         panelRound3 = new Herramientas.PanelRound();
         jLabel3 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(32, 32, 32));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 40, 30));
@@ -248,4 +245,8 @@ public class UIPagoInfraccion extends javax.swing.JFrame {
     private Herramientas.PanelRound panelRound3;
     private Herramientas.PanelRound panelRound4;
     // End of variables declaration//GEN-END:variables
+
+    void run() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

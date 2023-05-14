@@ -44,9 +44,6 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         combobox2 = new Herramientas.Combobox();
         combobox3 = new Herramientas.Combobox();
         tx_infraccion = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(32, 32, 32));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
