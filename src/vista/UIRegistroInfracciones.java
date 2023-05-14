@@ -43,6 +43,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         combobox2 = new Herramientas.Combobox();
         combobox3 = new Herramientas.Combobox();
+        tx_infraccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,7 +90,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 150, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 100, 40));
 
         panelRound4.setBackground(new java.awt.Color(54, 54, 54));
 
@@ -189,6 +190,19 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         combobox3.setLabeText("Placa");
         jPanel1.add(combobox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 350, 50));
 
+        tx_infraccion.setBackground(new java.awt.Color(248, 248, 248));
+        tx_infraccion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tx_infraccion.setForeground(new java.awt.Color(8, 8, 8));
+        tx_infraccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tx_infraccion.setText("Infracción");
+        tx_infraccion.setBorder(null);
+        tx_infraccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tx_infraccionMouseClicked(evt);
+            }
+        });
+        jPanel1.add(tx_infraccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,6 +221,10 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void tx_infraccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tx_infraccionMouseClicked
+        tx_infraccion.setText("");
+    }//GEN-LAST:event_tx_infraccionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -261,5 +279,6 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private Herramientas.PanelRound panelRound3;
     private Herramientas.PanelRound panelRound4;
+    private javax.swing.JTextField tx_infraccion;
     // End of variables declaration//GEN-END:variables
 }

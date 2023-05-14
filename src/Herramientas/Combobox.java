@@ -121,7 +121,7 @@ public class Combobox<E> extends JComboBox<E> {
             addPopupMenuListener(new PopupMenuListener() {
                 @Override
                 public void popupMenuWillBecomeVisible(PopupMenuEvent pme) {
-                    arrowButton.setBackground(new Color(200, 200, 200));
+                    arrowButton.setBackground(new Color(240, 240, 240));
                 }
 
                 @Override
