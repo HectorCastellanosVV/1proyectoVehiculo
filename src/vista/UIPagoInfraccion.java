@@ -4,18 +4,49 @@
  */
 package vista;
 
-/**
- *
- * @author Hector
- */
+import control.InfraccionJpaController;
+import control.TipovehiculoJpaController;
+import control.VehiculoJpaController;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import modelo.Infraccion;
+import modelo.TModeloInfraccion;
+import modelo.TModeloVehiculo;
+import modelo.Tipovehiculo;
+import modelo.Vehiculo;
+
 public class UIPagoInfraccion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UIPagoInfraccion
-     */
+    private InfraccionJpaController cInfraccion;
+    private VehiculoJpaController cvehiculo;
+    private Infraccion infracv;
+    private Vehiculo vehiculo;
+    private List<Vehiculo> Lista_vehiculos;
+    private List<Infraccion> Lista_Infraccion;
+    private TModeloInfraccion modeloInf;
+
     public UIPagoInfraccion() {
         initComponents();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("1ProyectoVehiculoPU");
+        cInfraccion = new InfraccionJpaController(emf);
+        cvehiculo = new VehiculoJpaController(emf);
+        Lista_Infraccion = cInfraccion.findInfraccionEntities();
+        Lista_vehiculos = cvehiculo.findVehiculoEntities();
+        modeloInf = new TModeloInfraccion(Lista_Infraccion);
+        modeloInf.fireTableDataChanged();
+        cargarVehiculo();
+
     }
+    
+    private void cargarVehiculo() {
+                Lista_vehiculos = cvehiculo.findVehiculoEntities();
+                combo_vehiculo.removeAllItems();
+                for (Vehiculo vh:Lista_vehiculos) {
+                       combo_vehiculo.addItem(vh.getTipo().getIdtipo());
+                }
+        }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,7 +60,7 @@ public class UIPagoInfraccion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        combobox3 = new Herramientas.Combobox();
+        combo_vehiculo = new Herramientas.Combobox();
         panelRound4 = new Herramientas.PanelRound();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -53,18 +84,18 @@ public class UIPagoInfraccion extends javax.swing.JFrame {
         jLabel1.setText("PAGO DE INFRACCIONES");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 370, -1));
 
-        combobox3.setBackground(new java.awt.Color(34, 34, 34));
-        combobox3.setForeground(new java.awt.Color(248, 248, 248));
-        combobox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", " " }));
-        combobox3.setSelectedIndex(-1);
-        combobox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        combobox3.setLabeText("Vehiculo");
-        combobox3.addActionListener(new java.awt.event.ActionListener() {
+        combo_vehiculo.setBackground(new java.awt.Color(34, 34, 34));
+        combo_vehiculo.setForeground(new java.awt.Color(248, 248, 248));
+        combo_vehiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", " " }));
+        combo_vehiculo.setSelectedIndex(-1);
+        combo_vehiculo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        combo_vehiculo.setLabeText("Vehiculo");
+        combo_vehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combobox3ActionPerformed(evt);
+                combo_vehiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(combobox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 190, 50));
+        jPanel1.add(combo_vehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 190, 50));
 
         panelRound4.setBackground(new java.awt.Color(54, 54, 54));
 
@@ -202,13 +233,13 @@ public class UIPagoInfraccion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7MouseClicked
 
-    private void combobox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox3ActionPerformed
+    private void combo_vehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_vehiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combobox3ActionPerformed
+    }//GEN-LAST:event_combo_vehiculoActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         this.setVisible(false);
-        UIInfraccion uiI=new UIInfraccion();
+        UIInfraccion uiI = new UIInfraccion();
         uiI.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -248,7 +279,7 @@ public class UIPagoInfraccion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Herramientas.Combobox combobox3;
+    private Herramientas.Combobox combo_vehiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

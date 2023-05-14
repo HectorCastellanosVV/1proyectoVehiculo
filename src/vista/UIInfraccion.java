@@ -132,13 +132,13 @@ public class UIInfraccion extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
        UIPagoInfrac=new UIPagoInfraccion();
        UIPagoInfrac.setVisible(TRUE);
-       this.setVisible(false);
+      
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         UIRegistroInfrac=new UIRegistroInfracciones();
          UIRegistroInfrac.setVisible(TRUE);
-         this.setVisible(false);
+         
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered

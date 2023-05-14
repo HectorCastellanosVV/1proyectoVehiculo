@@ -9,18 +9,17 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Hector
+ * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class TModeloTipoV extends AbstractTableModel {
+public class TModeloInfraccion extends AbstractTableModel {
 
-    private List<Tipovehiculo> datos;
+    private List<Infraccion> datos;
     private int nc;
-    final private String columnas[] = {"ID TIPO", "Nombre", "Caracteristicas"};
+    final private String columnas[] = {"ID Infraccion", "Descripcion", "Multa"};
 
-    public TModeloTipoV(List<Tipovehiculo> d) {
+    public TModeloInfraccion(List<Infraccion> d) {
         datos = d;
     }
-    // getColumnNames(int c);
 
     @Override
     public int getRowCount() {
@@ -32,6 +31,7 @@ public class TModeloTipoV extends AbstractTableModel {
         return columnas.length;
     }
 
+    @Override
     public String getColumnName(int column) {
         return columnas[column]; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
@@ -40,13 +40,14 @@ public class TModeloTipoV extends AbstractTableModel {
     public Object getValueAt(int r, int c) {
         switch (c) {
             case 0:
-                return datos.get(r).getIdtipo();
+                return datos.get(r).getIdinfraccion();
             case 1:
-                return datos.get(r).getNombre();
+                return datos.get(r).getDescripcion();
             case 2:
-                return datos.get(r).getCaracteristicas();
+                return datos.get(r).getMulta();
             default:
                 return null;
         }
     }
+
 }

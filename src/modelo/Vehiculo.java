@@ -141,7 +141,7 @@ public class Vehiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Vehiculo[ idve=" + idve + " ]";
+        return "" + idve + " ]";
     }
 
     @XmlTransient

@@ -4,17 +4,74 @@
  */
 package vista;
 
+import control.InfraccionJpaController;
+import control.InfraccionesJpaController;
+import control.VehiculoJpaController;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import modelo.Infraccion;
+import modelo.Infracciones;
+import modelo.TModeloInfracciones;
+import modelo.TModeloVehiculo;
+import modelo.Tipovehiculo;
+import modelo.Vehiculo;
+
 /**
  *
  * @author Hector
  */
 public class UIRegistroInfracciones extends javax.swing.JFrame {
 
+    private InfraccionJpaController cInfraccion;
+    private InfraccionesJpaController cInfracciones;
+    private VehiculoJpaController cVehiculo;
+    private Infraccion infraccion;
+    private Vehiculo vehiculo;
+    private Infracciones Infracciones;
+    private List<Vehiculo> List_Vehiculos;
+    private List<Infracciones> List_Infracciones;
+    private List<Infraccion> List_Infraccion;
+    private TModeloInfracciones modelot;
+
     /**
      * Creates new form UIRegistroInfracciones
      */
     public UIRegistroInfracciones() {
         initComponents();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("1ProyectoVehiculoPU");
+        cVehiculo = new VehiculoJpaController(emf);
+        cInfracciones = new InfraccionesJpaController(emf);
+        cInfraccion = new InfraccionJpaController(emf);
+        List_Vehiculos = cVehiculo.findVehiculoEntities();
+        List_Infracciones = cInfracciones.findInfraccionesEntities();
+        List_Infraccion = cInfraccion.findInfraccionEntities();
+        modelot = new TModeloInfracciones(List_Infracciones);
+        modelot.fireTableDataChanged();
+        TablaInfracciones.setModel(modelot);
+        cargarPlaca();
+        cargarInfraccion();
+
+    }
+
+    private void cargarPlaca() {
+        List_Vehiculos = cVehiculo.findVehiculoEntities();
+        Combo_Placa.removeAllItems();
+        for (Vehiculo vh : List_Vehiculos) {
+            Combo_Placa.addItem(vh.getPlaca());
+        }
+    }
+
+    private void cargarInfraccion() {
+        List_Infraccion = cInfraccion.findInfraccionEntities();
+        combo_infrac.removeAllItems();
+        for (Infraccion inf : List_Infraccion) {
+            combo_infrac.addItem(inf.getIdinfraccion());
+        }
+
     }
 
     /**
@@ -29,7 +86,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelRound3 = new Herramientas.PanelRound();
-        jLabel3 = new javax.swing.JLabel();
+        button_pagar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         panelRound4 = new Herramientas.PanelRound();
@@ -39,11 +96,11 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaInfracciones = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        combobox2 = new Herramientas.Combobox();
-        combobox3 = new Herramientas.Combobox();
-        tx_infraccion = new javax.swing.JTextField();
+        combo_infrac = new Herramientas.Combobox();
+        Combo_Placa = new Herramientas.Combobox();
+        txt_fecha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,20 +120,25 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         panelRound3.setRoundTopLeft(30);
         panelRound3.setRoundTopRight(30);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(248, 248, 248));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Pagar");
+        button_pagar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        button_pagar.setForeground(new java.awt.Color(248, 248, 248));
+        button_pagar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        button_pagar.setText("Registrar");
+        button_pagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button_pagarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound3Layout = new javax.swing.GroupLayout(panelRound3);
         panelRound3.setLayout(panelRound3Layout);
         panelRound3Layout.setHorizontalGroup(
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(button_pagar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         panelRound3Layout.setVerticalGroup(
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(button_pagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         jPanel1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 120, 40));
@@ -85,7 +147,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(248, 248, 248));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Infracción");
+        jLabel6.setText("Fecha");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
@@ -148,10 +210,10 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
 
         jPanel1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 560, 30));
 
-        jTable1.setBackground(new java.awt.Color(64, 64, 64));
-        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(248, 248, 248));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaInfracciones.setBackground(new java.awt.Color(64, 64, 64));
+        TablaInfracciones.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        TablaInfracciones.setForeground(new java.awt.Color(248, 248, 248));
+        TablaInfracciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"a", "1", "a", "1", "q"},
                 {"b", "2", "b", "2", "w"},
@@ -170,38 +232,31 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
                 "", "", "", "", ""
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaInfracciones);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 560, 210));
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, 40, 20));
 
-        combobox2.setBackground(new java.awt.Color(34, 34, 34));
-        combobox2.setForeground(new java.awt.Color(248, 248, 248));
-        combobox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", " " }));
-        combobox2.setSelectedIndex(-1);
-        combobox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        combobox2.setLabeText("Infracción");
-        jPanel1.add(combobox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 50));
+        combo_infrac.setBackground(new java.awt.Color(34, 34, 34));
+        combo_infrac.setForeground(new java.awt.Color(248, 248, 248));
+        combo_infrac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", " " }));
+        combo_infrac.setSelectedIndex(-1);
+        combo_infrac.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        combo_infrac.setLabeText("Infracción");
+        jPanel1.add(combo_infrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 50));
 
-        combobox3.setBackground(new java.awt.Color(34, 34, 34));
-        combobox3.setForeground(new java.awt.Color(248, 248, 248));
-        combobox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", " " }));
-        combobox3.setSelectedIndex(-1);
-        combobox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        combobox3.setLabeText("Placa");
-        jPanel1.add(combobox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 350, 50));
+        Combo_Placa.setBackground(new java.awt.Color(34, 34, 34));
+        Combo_Placa.setForeground(new java.awt.Color(248, 248, 248));
+        Combo_Placa.setSelectedIndex(-1);
+        Combo_Placa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Combo_Placa.setLabeText("Placa");
+        jPanel1.add(Combo_Placa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 350, 50));
 
-        tx_infraccion.setBackground(new java.awt.Color(248, 248, 248));
-        tx_infraccion.setForeground(new java.awt.Color(8, 8, 8));
-        tx_infraccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tx_infraccion.setText("Infracción");
-        tx_infraccion.setBorder(null);
-        tx_infraccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tx_infraccionMouseClicked(evt);
-            }
-        });
-        jPanel1.add(tx_infraccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 230, 40));
+        txt_fecha.setBackground(new java.awt.Color(248, 248, 248));
+        txt_fecha.setForeground(new java.awt.Color(8, 8, 8));
+        txt_fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_fecha.setBorder(null);
+        jPanel1.add(txt_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 230, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/antes.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,15 +285,33 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void tx_infraccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tx_infraccionMouseClicked
-        tx_infraccion.setText("");
-    }//GEN-LAST:event_tx_infraccionMouseClicked
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         this.setVisible(false);
-        UIInfraccion uiI=new UIInfraccion();
+        UIInfraccion uiI = new UIInfraccion();
         uiI.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void button_pagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_pagarMouseClicked
+        Infracciones = new Infracciones();
+        Infracciones.setVehiculo(List_Vehiculos.get(Combo_Placa.getSelectedIndex()));
+        Infracciones.setInfraccion(List_Infraccion.get(combo_infrac.getSelectedIndex()));
+        Infracciones.setFecha(ParseFecha(txt_fecha.getText()));
+        Infracciones.setFechapago(ParseFecha("000/00/00"));
+        cInfracciones.create(Infracciones);
+        modelot.fireTableDataChanged();
+        List_Infracciones.add(Infracciones);
+    }//GEN-LAST:event_button_pagarMouseClicked
+
+    public static Date ParseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
 
     /**
      * @param args the command line arguments
@@ -276,14 +349,15 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Herramientas.Combobox combobox2;
-    private Herramientas.Combobox combobox3;
+    private Herramientas.Combobox Combo_Placa;
+    private javax.swing.JTable TablaInfracciones;
+    private javax.swing.JLabel button_pagar;
+    private Herramientas.Combobox combo_infrac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -291,9 +365,8 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private Herramientas.PanelRound panelRound3;
     private Herramientas.PanelRound panelRound4;
-    private javax.swing.JTextField tx_infraccion;
+    private javax.swing.JTextField txt_fecha;
     // End of variables declaration//GEN-END:variables
 }
