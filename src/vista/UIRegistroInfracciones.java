@@ -44,6 +44,10 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         combobox2 = new Herramientas.Combobox();
         combobox3 = new Herramientas.Combobox();
         tx_infraccion = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         jPanel1.setBackground(new java.awt.Color(32, 32, 32));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -188,7 +192,6 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         jPanel1.add(combobox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 350, 50));
 
         tx_infraccion.setBackground(new java.awt.Color(248, 248, 248));
-        tx_infraccion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tx_infraccion.setForeground(new java.awt.Color(8, 8, 8));
         tx_infraccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tx_infraccion.setText("Infracción");
@@ -200,11 +203,19 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         });
         jPanel1.add(tx_infraccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 230, 40));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/antes.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +233,12 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private void tx_infraccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tx_infraccionMouseClicked
         tx_infraccion.setText("");
     }//GEN-LAST:event_tx_infraccionMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        this.setVisible(false);
+        UIInfraccion uiI=new UIInfraccion();
+        uiI.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -265,6 +282,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
