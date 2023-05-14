@@ -2,6 +2,10 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="1ProyectoVehiculoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>modelo.Tipovehiculo</class>
+    <class>modelo.Vehiculo</class>
+    <class>modelo.Infraccion</class>
+    <class>modelo.Infracciones</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/vehiculoss"/>
       <property name="javax.persistence.jdbc.user" value="abisai"/>

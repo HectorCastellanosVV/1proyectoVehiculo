@@ -5,6 +5,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,6 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Vehiculo.findByColor", query = "SELECT v FROM Vehiculo v WHERE v.color = :color"),
     @NamedQuery(name = "Vehiculo.findByMarca", query = "SELECT v FROM Vehiculo v WHERE v.marca = :marca")})
 public class Vehiculo implements Serializable {
+
+    @OneToMany(mappedBy = "vehiculo")
+    private List<Infracciones> infraccionesList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -136,6 +142,15 @@ public class Vehiculo implements Serializable {
     @Override
     public String toString() {
         return "modelo.Vehiculo[ idve=" + idve + " ]";
+    }
+
+    @XmlTransient
+    public List<Infracciones> getInfraccionesList() {
+        return infraccionesList;
+    }
+
+    public void setInfraccionesList(List<Infracciones> infraccionesList) {
+        this.infraccionesList = infraccionesList;
     }
     
 }

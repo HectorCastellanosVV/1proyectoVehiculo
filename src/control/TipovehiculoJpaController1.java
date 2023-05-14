@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package Herramientas;
+package control;
 
-import Herramientas.exceptions.NonexistentEntityException;
+import control.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -22,9 +22,9 @@ import modelo.Tipovehiculo;
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class TipovehiculoJpaController implements Serializable {
+public class TipovehiculoJpaController1 implements Serializable {
 
-    public TipovehiculoJpaController(EntityManagerFactory emf) {
+    public TipovehiculoJpaController1(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
