@@ -54,7 +54,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(248, 248, 248));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRO DE INFRACCIONES");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 370, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 370, -1));
 
         panelRound3.setBackground(new java.awt.Color(64, 64, 64));
         panelRound3.setRoundBottomLeft(30);
@@ -78,7 +78,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 120, 40));
+        jPanel1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 120, 40));
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 40, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -90,7 +90,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 100, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 100, 40));
 
         panelRound4.setBackground(new java.awt.Color(54, 54, 54));
 
@@ -145,7 +145,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 550, 30));
+        jPanel1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 560, 30));
 
         jTable1.setBackground(new java.awt.Color(64, 64, 64));
         jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
@@ -171,7 +171,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 550, 180));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 560, 210));
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, 40, 20));
 
         combobox2.setBackground(new java.awt.Color(34, 34, 34));
@@ -180,7 +180,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         combobox2.setSelectedIndex(-1);
         combobox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         combobox2.setLabeText("Infracción");
-        jPanel1.add(combobox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 350, 50));
+        jPanel1.add(combobox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 350, 50));
 
         combobox3.setBackground(new java.awt.Color(34, 34, 34));
         combobox3.setForeground(new java.awt.Color(248, 248, 248));
@@ -188,7 +188,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         combobox3.setSelectedIndex(-1);
         combobox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         combobox3.setLabeText("Placa");
-        jPanel1.add(combobox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 350, 50));
+        jPanel1.add(combobox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 350, 50));
 
         tx_infraccion.setBackground(new java.awt.Color(248, 248, 248));
         tx_infraccion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -201,17 +201,17 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
                 tx_infraccionMouseClicked(evt);
             }
         });
-        jPanel1.add(tx_infraccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 40));
+        jPanel1.add(tx_infraccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
