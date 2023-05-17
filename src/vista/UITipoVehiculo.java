@@ -59,7 +59,7 @@ public class UITipoVehiculo extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(64, 64, 64));
+        jPanel1.setBackground(new java.awt.Color(204, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setBackground(new java.awt.Color(204, 255, 204));
@@ -69,7 +69,6 @@ public class UITipoVehiculo extends javax.swing.JDialog {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         txt_tipo.setBackground(new java.awt.Color(248, 248, 248));
-        txt_tipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_tipo.setForeground(new java.awt.Color(1, 1, 1));
         txt_tipo.setText("Tipo");
         txt_tipo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -85,7 +84,6 @@ public class UITipoVehiculo extends javax.swing.JDialog {
         jPanel1.add(txt_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 280, 30));
 
         txt_caracteristica.setBackground(new java.awt.Color(248, 248, 248));
-        txt_caracteristica.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_caracteristica.setForeground(new java.awt.Color(1, 1, 1));
         txt_caracteristica.setText("Caracteristicas");
         txt_caracteristica.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -7,10 +7,10 @@
     <class>modelo.Tipovehiculo</class>
     <class>modelo.Vehiculo</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Vehiculos"/>
-      <property name="javax.persistence.jdbc.user" value="hector"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Vehiculop"/>
+      <property name="javax.persistence.jdbc.user" value="abisai123"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.password" value="Hector123"/>
+      <property name="javax.persistence.jdbc.password" value="abisai123"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>

@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JSpinner;
 import modelo.Infraccion;
 import modelo.Infracciones;
 import modelo.TModeloInfracciones;
@@ -39,7 +40,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private List<Infracciones> List_Infracciones;
     private List<Infraccion> List_Infraccion;
     private TModeloInfracciones modelot;
-    private ArrayList idInfracciones=new ArrayList();
+    private ArrayList idInfracciones = new ArrayList();
 
     /**
      * Creates new form UIRegistroInfracciones
@@ -70,7 +71,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     }
 
     private void cargarInfraccion() {
-        
+
         List_Infraccion = cInfraccion.findInfraccionEntities();
         combo_infrac.removeAllItems();
         for (Infraccion inf : List_Infraccion) {
@@ -79,23 +80,21 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         }
 
     }
-    private void agregarInfraccion()
-    {
+
+    private void agregarInfraccion() {
         Infracciones = new Infracciones();
-        Vehiculo vehiculoadd=List_Vehiculos.get(Combo_Placa.getSelectedIndex());
-        int posicion=combo_infrac.getSelectedIndex(); //posición del combobox seleccionado
-        Infraccion infraccionadd=List_Infraccion.get((int) idInfracciones.get(posicion)); //Agregar el id a infraccion 
-        Date fecha=ParseFecha(txt_fecha.getText());
-        //Date fechaPago=ParseFecha(txt_fecha.getText());
-        
+        Vehiculo vehiculoadd = List_Vehiculos.get(Combo_Placa.getSelectedIndex());
+        int posicion = combo_infrac.getSelectedIndex(); //posición del combobox seleccionado
+        Infraccion infraccionadd = List_Infraccion.get((int) idInfracciones.get(posicion)); //Agregar el id a infraccion   
         Infracciones.setVehiculo(vehiculoadd);
         Infracciones.setInfraccion(infraccionadd);
-        Infracciones.setFecha(fecha);
+        Infracciones.setFecha(fecha());
         //Infracciones.setFechapago(ParseFecha("000/00/00"));
         cInfracciones.create(Infracciones);
         modelot.fireTableDataChanged();
         List_Infracciones.add(Infracciones);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,12 +121,12 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         combo_infrac = new Herramientas.Combobox();
         Combo_Placa = new Herramientas.Combobox();
-        txt_fecha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        Choose_date = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(32, 32, 32));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -272,17 +271,6 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         Combo_Placa.setLabeText("Placa");
         jPanel1.add(Combo_Placa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 350, 50));
 
-        txt_fecha.setBackground(new java.awt.Color(248, 248, 248));
-        txt_fecha.setForeground(new java.awt.Color(8, 8, 8));
-        txt_fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_fecha.setBorder(null);
-        txt_fecha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_fechaKeyPressed(evt);
-            }
-        });
-        jPanel1.add(txt_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 230, 40));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/antes.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -290,6 +278,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
+        jPanel1.add(Choose_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -316,16 +305,15 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         uiI.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    public Date fecha() {
+        Date fecha = Choose_date.getDate();
+        long d = fecha.getTime();
+        java.sql.Date fec = new java.sql.Date(d);
+        return fec;
+    }
     private void button_pagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_pagarMouseClicked
         agregarInfraccion();
     }//GEN-LAST:event_button_pagarMouseClicked
-
-    private void txt_fechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fechaKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-            agregarInfraccion();
-        }
-    }//GEN-LAST:event_txt_fechaKeyPressed
 
     public static Date ParseFecha(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
@@ -333,7 +321,6 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
         try {
             fechaDate = formato.parse(fecha);
         } catch (ParseException ex) {
-            System.out.println(ex);
         }
         return fechaDate;
     }
@@ -374,6 +361,7 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser Choose_date;
     private Herramientas.Combobox Combo_Placa;
     private javax.swing.JTable TablaInfracciones;
     private javax.swing.JLabel button_pagar;
@@ -392,6 +380,5 @@ public class UIRegistroInfracciones extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private Herramientas.PanelRound panelRound3;
     private Herramientas.PanelRound panelRound4;
-    private javax.swing.JTextField txt_fecha;
     // End of variables declaration//GEN-END:variables
 }

@@ -84,7 +84,7 @@ public class UIVehiculo1 extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(34, 34, 34));
+        jPanel1.setBackground(new java.awt.Color(204, 153, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setBackground(new java.awt.Color(204, 255, 204));
@@ -111,7 +111,7 @@ public class UIVehiculo1 extends javax.swing.JDialog {
                 txt_PlacaActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_Placa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 280, 30));
+        jPanel1.add(txt_Placa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 190, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(248, 248, 248));
@@ -159,7 +159,7 @@ public class UIVehiculo1 extends javax.swing.JDialog {
         TablaVehiculos.setSelectionBackground(new java.awt.Color(51, 0, 51));
         jScrollPane1.setViewportView(TablaVehiculos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 80, 400, 190));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 430, 230));
 
         panelRound1.setBackground(new java.awt.Color(8, 8, 8));
         panelRound1.setRoundBottomLeft(30);
@@ -188,17 +188,17 @@ public class UIVehiculo1 extends javax.swing.JDialog {
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(boton, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(boton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
-                .addComponent(boton, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(boton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 100, 40));
+        jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 100, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

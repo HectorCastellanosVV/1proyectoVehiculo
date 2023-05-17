@@ -28,7 +28,7 @@ public class TModeloPagoInfracciones extends AbstractTableModel {
         // Filtrar infracciones por vehículo
         List<Infracciones> infraccionesFiltradas = new ArrayList<>();
         for (Infracciones i : datos) {
-            if (i.getVehiculo().getIdve() == idV) {
+            if (i.getVehiculo().getIdve() == idV && i.getFechapago() == null) {
                 infraccionesFiltradas.add(i);
             }
         }
@@ -46,24 +46,34 @@ public class TModeloPagoInfracciones extends AbstractTableModel {
         return columnas.length;
     }
 
+    public Infracciones remove(int index) {
+        return datos.remove(index);
+    }
+
     @Override
     public String getColumnName(int column) {
         return columnas[column];
     }
 
-    @Override
     public Object getValueAt(int r, int c) {
         Infracciones infraccion = datos.get(r);
 
         switch (c) {
             case 0:
+
                 return infraccion.getIdfolioinf();
+
             case 1:
+
                 return infraccion.getInfraccion().getDescripcion();
+
             case 2:
+
                 return infraccion.getInfraccion().getMulta();
+
             default:
                 return null;
         }
+
     }
 }
